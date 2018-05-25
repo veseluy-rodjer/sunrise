@@ -15,6 +15,10 @@ Route::resource('/invite', 'InviteController');
 
 Auth::routes();
 
+Route::match(['get', 'head'], 'register', function(){
+    return response('Только через почту!');
+})->name('register');    
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/', 'СolleaguesController', ['parameters' => ['' => 'сolleagues']]);
