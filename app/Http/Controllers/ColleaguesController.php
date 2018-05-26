@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Colleague;
 
-class СolleaguesController extends Controller
+class ColleaguesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,17 @@ class СolleaguesController extends Controller
      */
     public function index()
     {
-        return view('colleagues');
+        $order=null;
+        $listing = Colleague::listing($order);
+        $date = ['title' => 'Главная', 'listing' => $listing];
+        return view('colleagues', $date);
+    }
+
+    public function indexOrder($order)
+    {
+        $listing = Colleague::listing($order);
+        $date = ['title' => 'Главная', 'listing' => $listing];
+        return view('colleagues', $date);
     }
 
     /**

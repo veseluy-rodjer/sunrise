@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>Главная</title>
+<title>{{ $title }}</title>
 <style>
 table {
 	width: 100%; /* Ширина таблицы */
