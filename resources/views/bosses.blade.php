@@ -20,9 +20,9 @@
         <td style="width: 10%;"><p>{{ $y->boss }}</p></td>
         <td style="width: 10%;"><p>{{ $y->role }}</p></td>
         <td style="width: 10%;"><p>{{ $y->sex->sex }}</p></td>
-        <td style="width: 10%;"><a href="{{ route('edit', [$y->id]) }}" >Редактировать</a></td>
+        <td style="width: 10%;"><a href="{{ route('boss.edit', [$y->id]) }}" >Редактировать</a></td>
         <td style="width: 10%;">
-<form action="{{ route('destroy', [$y->id]) }}" method="post">
+<form action="{{ route('boss.destroy', [$y->id]) }}" method="post">
 {{ csrf_field() }}
 {{ method_field('DELETE') }}
 <p><input type="submit" value="Удалить"></p>

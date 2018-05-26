@@ -21,9 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->integer('boss_id')->nullable();
-            $table->integer('rank_id')->nullable();
-            $table->integer('sex_id')->nullable();
+            $table->integer('sex_id');
+            $table->integer('belong');
         });
     }
 

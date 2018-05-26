@@ -16,7 +16,7 @@ class CreateBossesTable extends Migration
         Schema::create('bosses', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('boss');
+            $table->string('boss')->unique();
         });
     }
 
