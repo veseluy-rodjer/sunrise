@@ -17,16 +17,7 @@
         <td style="width: 10%;"><p>{{ $y->name }}</p></td>
         <td style="width: 15%;"><p>{{ $y->surname }}</p></td>
         <td style="width: 20%;"><p>{{ $y->email }}</p></td>
-        <td style="width: 10%;"><p>
-@php
-if ($y->rank_id === null) {
-    echo $y->boss->boss;
-}
-else {
-    echo $y->rank->rank;
-}
-@endphp
-</p></td>
+        <td style="width: 10%;"><p>{{ $y->boss }}</p></td>
         <td style="width: 10%;"><p>{{ $y->role }}</p></td>
         <td style="width: 10%;"><p>{{ $y->sex->sex }}</p></td>
         <td style="width: 10%;"><a href="{{ route('edit', [$y->id]) }}" >Редактировать</a></td>

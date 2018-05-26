@@ -11,6 +11,14 @@
 |
 */
 
+Route::resource('/role', 'RoleController');
+
+Route::resource('/sex', 'SexController');
+
+Route::resource('/boss', 'BossController');
+
+Route::resource('/rank', 'RankController');
+
 Route::resource('/invite', 'InviteController');
 
 Auth::routes();
