@@ -10,6 +10,8 @@ class Boss extends Model
     
     public function colleague()
     {
-        return $this->hasMany('App\Colleague');
-    }    
+        return $this->belongsToMany('App\Colleague');
+    } 
+    
+       
 }

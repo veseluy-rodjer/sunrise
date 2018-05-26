@@ -10,6 +10,6 @@ class Rank extends Model
     
     public function colleagues()
     {
-        return $this->belongsTo('App\Colleague');
+        return $this->belongsToMany('App\Colleague');
     }    
 }

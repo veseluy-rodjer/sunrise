@@ -11,7 +11,7 @@ class Colleague extends Model
     public function scopeListing($quest, $order)
     {
         if ($order == null) {
-            return Colleague::where('boss_id', '!=', -1)->paginate(10);
+            return Colleague::where('id', '!=', 1)->paginate(10);
         }
         else {
             return Colleague::orderBy($order)
@@ -28,12 +28,12 @@ class Colleague extends Model
     
     public function boss()
     {
-        return $this->belongsTo('App\Boss');
+        return $this->belongsToMany('App\Boss');
     }
     
     public function rank()
     {
-        return $this->belongsTo('App\Rank');
+        return $this->belongsToMany('App\Rank');
     }
     
     public function role()

@@ -19,11 +19,15 @@
         <td style="width: 20%;"><p>{{ $y->email }}</p></td>
         <td style="width: 10%;"><p>
 @php
-if ($y->rank_id === null) {
-    echo $y->boss->boss;
+if ($y->belong != 1) {
+    foreach($y->rank as $x) {
+        echo $x->rank;
+    }
 }
 else {
-    echo $y->rank->rank;
+    foreach($y->boss as $x) {
+        echo $x->boss;
+    }
 }
 @endphp
 </p></td>

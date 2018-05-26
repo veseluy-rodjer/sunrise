@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sex extends Model
 {
-    protected $table = 'users';
+    protected $table = 'sexes';
     
     public function colleague()
     {
