@@ -80,8 +80,13 @@ class BossController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Boss::up($id, $request);
-        return redirect()->route('boss.index');
+        $res = Boss::up($id, $request);
+        if ($res == false) {
+            return response('Такая должность уже существует, придумайте другую!');
+        }
+        else {
+            return redirect()->route('boss.index');
+        }        
     }
 
     /**

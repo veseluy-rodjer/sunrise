@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Boss;
+use App\Sex;
 
 class Colleague extends Model
 {
@@ -19,7 +21,21 @@ class Colleague extends Model
             ->get();
         }        
     }
+
+    public function scopeEdit($quest, $id)
+    {
+        return Colleague::find($id);
+    }
     
+    public function scopeUp($quest, $id, $request)
+    {
+        $user = Colleague::find($id);
+        $boss = Boss::whereBoss($request->boss)->first();
+        $sex = Sex::whereSex($request->sex)->first();
+        $user->boss()->sync([$boss->id]);
+        $user->sex()->associate($sex);
+        $user->save();        
+    }    
     
     public function sex()
     {

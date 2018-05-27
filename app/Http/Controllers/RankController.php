@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Rank;
 
 class RankController extends Controller
 {
@@ -13,7 +14,9 @@ class RankController extends Controller
      */
     public function index()
     {
-        //
+        $listing = Rank::listing();
+        $date = ['title' => 'Челядь', 'listing' => $listing];
+        return view('rank', $date);
     }
 
     /**
@@ -23,7 +26,8 @@ class RankController extends Controller
      */
     public function create()
     {
-        //
+        $date = ['title' => 'Челядь'];
+        return view('rank/create', $date);
     }
 
     /**
@@ -34,7 +38,13 @@ class RankController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $res = Rank::store($request);
+        if ($res == false) {
+            return response('Такая должность уже существует, придумайте другую!');
+        }
+        else {
+            return redirect()->route('rank.index');
+        }
     }
 
     /**
@@ -56,7 +66,9 @@ class RankController extends Controller
      */
     public function edit($id)
     {
-        //
+        $edit = Rank::edit($id);
+        $date = ['title' => 'Челядь', 'edit' => $edit];
+        return view('rank/edit', $date);
     }
 
     /**
@@ -68,7 +80,13 @@ class RankController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $res = Rank::up($id, $request);
+        if ($res == false) {
+            return response('Такая должность уже существует, придумайте другую!');
+        }
+        else {
+            return redirect()->route('rank.index');
+        }        
     }
 
     /**
@@ -79,6 +97,7 @@ class RankController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Rank::destr($id);
+        return back();
     }
 }

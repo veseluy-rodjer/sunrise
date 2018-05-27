@@ -17,7 +17,7 @@ class CreateColleagueRankTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->integer('rank_id');
-            $table->integer('colleague_id');
+            $table->integer('colleague_id')->unique();
         });
     }
 

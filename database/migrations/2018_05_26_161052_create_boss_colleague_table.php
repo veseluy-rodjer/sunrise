@@ -17,7 +17,7 @@ class CreateBossColleagueTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->integer('boss_id');
-            $table->integer('colleague_id');
+            $table->integer('colleague_id')->unique();
         });
     }
 

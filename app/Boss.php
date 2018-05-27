@@ -15,7 +15,7 @@ class Boss extends Model
     
     public function scopeStore($quest, $request)
     {
-        if (Boss::where('boss', $request->boss)->count() > 0) {
+        if (Boss::whereBoss($request->boss)->count() > 0) {
             return false;
         }
         else {
@@ -34,13 +34,19 @@ class Boss extends Model
     public function scopeUp($quest, $id, $request)
     {
         $up = Boss::find($id);
-        $up->boss = $request->boss;
-        $up->save();        
+        if (Boss::whereBoss($request->boss)->count() > 0 && $up->boss != $request->boss) {
+            return false;
+        }
+        else {
+            $up->boss = $request->boss;
+            $up->save();
+            return true;
+        }        
     }    
     
     public function scopeDestr($quest, $id)
     {
-        $destroy = Boss::destroy($id);
+        $destroy = Boss::find($id);
         if ($destroy->colleague()->count() > 0) {
             $destroy->colleague()->detach();
         }
