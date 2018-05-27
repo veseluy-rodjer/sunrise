@@ -4,12 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Colleague;
-/*
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\Migrations\Migration;
-*/
-class ColleaguesController extends Controller
+
+class ColleagueController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,15 +14,10 @@ class ColleaguesController extends Controller
      */
     public function index()
     {
-        /*
-        Schema::table('users', function (Blueprint $table) {
-          $table->integer('sex_id')->change();
-        });
-        */
         $order=null;
         $listing = Colleague::listing($order);
         $date = ['title' => 'Главная', 'listing' => $listing];
-        return view('colleagues', $date);
+        return view('colleague', $date);
     }
 
     public function indexOrder($order)

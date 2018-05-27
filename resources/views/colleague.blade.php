@@ -2,10 +2,10 @@
 @section('content')
 
 <div class="container">
-    <p style="text-align:left; font-weight:700"><a href="{{ route('create') }}" >Придумать роли (может только супербосс)</a></p>
-    <p style="text-align:left; font-weight:700"><a href="{{ route('create') }}" >Придумать должность (может только супербосс)</a></p>
-    <p style="text-align:right; font-weight:700"><a href="{{ route('create') }}" >Добавить сотрудника в свой отдел</a></p>
-    <p style="text-align:center; font-weight:700"><a href="{{ route('create') }}" >Придумать должность в своем отделе</a></p>
+    <p style="text-align:left; font-weight:700"><a href="{{ route('role.create') }}" >Придумать роли (может только супербосс)</a></p>
+    <p style="text-align:left; font-weight:700"><a href="{{ route('boss.create') }}" >Назначить себе замов (может только супербосс)</a></p>
+    <p style="text-align:right; font-weight:700"><a href="{{ route('invite.create') }}" >Добавить сотрудника в свой отдел (может только зам.)</a></p>
+    <p style="text-align:center; font-weight:700"><a href="{{ route('rank.create') }}" >Придумать должности для остальных (может только супербосс)</a></p>
 
 <table>
     <tr><th>№</th><th>Имя</th><th>Фамилия</th><th>Email</th>><th>Должность</th><th>Роль</th><th>Пол</th><th>Редактировать</th><th>Удалить</th></tr>

@@ -29,6 +29,6 @@ Route::match(['get', 'head'], 'register', function(){
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('/', 'ColleaguesController', ['parameters' => ['' => 'colleagues']]);
+Route::resource('/', 'ColleagueController', ['parameters' => ['' => 'colleague']]);
 
-Route::get('/{colleagues}', 'ColleaguesController@indexOrder')->name('indexOrder');
+Route::get('/{colleague}', 'ColleagueController@indexOrder')->name('indexOrder');

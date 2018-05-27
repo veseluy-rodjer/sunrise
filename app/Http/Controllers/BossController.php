@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Boss;
 
 class BossController extends Controller
 {
@@ -13,7 +14,9 @@ class BossController extends Controller
      */
     public function index()
     {
-        //
+        $listing = Boss::listing();
+        $date = ['title' => 'Замы', 'listing' => $listing];
+        return view('boss', $date);
     }
 
     /**
@@ -23,7 +26,8 @@ class BossController extends Controller
      */
     public function create()
     {
-        //
+        $date = ['title' => 'Замы'];
+        return view('boss/create', $date);
     }
 
     /**
@@ -34,7 +38,13 @@ class BossController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $res = Boss::store($request);
+        if ($res == false) {
+            return response('Такая должность уже существует, придумайте другую!');
+        }
+        else {
+            return redirect()->route('boss.index');
+        }
     }
 
     /**
@@ -56,7 +66,9 @@ class BossController extends Controller
      */
     public function edit($id)
     {
-        //
+        $edit = Boss::edit($id);
+        $date = ['title' => 'Замы', 'edit' => $edit];
+        return view('boss/edit', $date);
     }
 
     /**
@@ -68,7 +80,8 @@ class BossController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Boss::up($id, $request);
+        return redirect()->route('boss.index');
     }
 
     /**
@@ -79,6 +92,7 @@ class BossController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Boss::destr($id);
+        return back();
     }
 }
