@@ -8,11 +8,6 @@ use App\Boss;
 use App\Rank;
 use App\Role;
 use App\Sex;
-/*
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\Migrations\Migration;
-*/
 
 class ColleagueController extends Controller
 {
@@ -23,12 +18,6 @@ class ColleagueController extends Controller
      */
     public function index()
     {
-/*      
-        Schema::table('users', function (Blueprint $table) {
-            $table->integer('sex_id')->nullable()->change();
-            $table->integer('belong')->nullable()->change();
-        });        
-*/
         $order='id';
         $listing = Colleague::listing($order);
         $data = ['title' => 'Главная', 'listing' => $listing];

@@ -16,11 +16,11 @@
         <td style="width: 15%;"><p>{{ $y->surname }}</p></td>
         <td style="width: 20%;"><p>{{ $y->email }}</p></td>
         <td style="width: 10%;"><p>{{ $y->boss()->first()->boss }}</p></td>
-        <td style="width: 10%;"><p>
+        <td style="width: 10%;">
 @foreach($y->role as $x)
-        {{ $x->role }}
+        <li>{{ $x->role }}</li>
 @endforeach        
-</p></td>
+</td>
         <td style="width: 10%;"><p>{{ $y->sex->sex }}</p></td>
         <td style="width: 10%;"><a href="{{ route('edit', [$y->id]) }}" >Редактировать</a></td>
         <td style="width: 10%;">

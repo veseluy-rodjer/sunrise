@@ -21,17 +21,17 @@
 <p>Фамилия: <input type="text" name="surname" value="{{ $user->surname }}" required></p>
 <p>Должность: <select name="boss" value="{{ $user->boss()->first()->boss }}" required>
     @foreach ($boss as $i)
-    <option @php if ($user->boss()->first()->boss == $i->boss) echo 'selected'; @endphp value="{{ $i->boss }}">{{ $i->boss }}</option>
+    <option @php if ($user->boss()->first()->boss == $i->boss) echo 'selected'; @endphp value="{{ $i->id }}">{{ $i->boss }}</option>
     @endforeach
 </select></p>
-<p>Роль: <select name="role" value="{{ $user->role()->first()->role }}" required>
+<p>Изменить роли: <select name="role[]" value="{{ $user->role()->first()->role }}" size="5" multiple required>
     @foreach ($role as $i)
-    <option @php if ($user->role()->first()->role == $i->role) echo 'selected'; @endphp value="{{ $i->role }}">{{ $i->role }}</option>
+    <option @php if (!empty($user->role()->find($i->id))) echo 'selected'; @endphp value="{{ $i->id }}">{{ $i->role }}</option>
     @endforeach
 </select></p>
 <p>Пол: <select size="2" name="sex" required>
     @foreach ($sex as $i)
-    <option @php if ($user->sex->sex == $i->sex) echo 'selected'; @endphp value="{{ $i->sex }}">{{ $i->sex }}</option>
+    <option @php if ($user->sex->sex == $i->sex) echo 'selected'; @endphp value="{{ $i->id }}">{{ $i->sex }}</option>
     @endforeach    
 </select></p>
 <p><input type="submit"></p>

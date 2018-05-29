@@ -35,13 +35,14 @@ class Colleague extends Model
     public function scopeUp($quest, $id, $request)
     {
         $user = Colleague::find($id);
-        $boss = Boss::whereBoss($request->boss)->first();
-        $role = Role::whereRole($request->role)->first();
-        $sex = Sex::whereSex($request->sex)->first();
+        $sex = Sex::find($request->sex);
         $user->name = $request->name;
         $user->surname = $request->surname;
-        $user->boss()->sync([$boss->id]);
-        $user->role()->sync([$role->id]);
+        $user->boss()->sync([$request->boss]);
+        $user->role()->detach();
+        foreach ($request->role as $x) {
+            $user->role()->attach($x);
+        }
         $user->sex()->associate($sex);
         $user->save();        
     }    

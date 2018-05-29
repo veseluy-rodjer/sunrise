@@ -77,11 +77,11 @@ class RegisterController extends Controller
         'password' => bcrypt($data['password']),
         ]);        
         $user = Colleague::whereEmail($data['email'])->first();
-        $boss = Boss::whereId($data['boss_id'])->first();
-        $role = Role::whereId($data['role_id'])->first();
         $sex = Sex::whereId($data['sex_id'])->first();
-        $user->boss()->sync([$boss->id]);
-        $user->role()->sync([$role->id]);
+        $user->boss()->sync([$data['boss_id']]);
+        foreach (unserialize($data['role_id']) as $x) {
+            $user->role()->attach($x);
+        }        
         $user->sex()->associate($sex);
         $user->save();        
         return $newUser;

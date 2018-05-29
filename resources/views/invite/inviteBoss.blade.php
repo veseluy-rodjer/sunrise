@@ -24,7 +24,7 @@
     <option value="{{ $i->id }}">{{ $i->boss }}</option>
     @endforeach
 </select></p>
-<p>Роль: <select name="role" required>
+<p>Роли: <select name="role[]" size="5" multiple required>
     @foreach ($role as $i)
     <option value="{{ $i->id }}">{{ $i->role }}</option>
     @endforeach

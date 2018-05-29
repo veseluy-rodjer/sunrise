@@ -25,7 +25,11 @@ class InviteBoss extends Model
             $add->surname = $request->surname;
             $add->email = $request->email;
             $add->boss_id = $request->boss;
-            $add->role_id = $request->role;
+            $role = [];
+            foreach ($request->role as $x) {
+                $role[] = $x;
+            }
+            $add->role_id = serialize($role);
             $add->sex_id = $request->sex;
             $add->key = $key;
             $add->time = $time;
