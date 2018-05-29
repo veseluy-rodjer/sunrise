@@ -6,8 +6,10 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Database\Eloquent\Model;
 use App\Boss;
 use App\Role;
+use App\Sex;
 use App\Colleague;
 
 class RegisterController extends Controller
@@ -66,22 +68,22 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        User::create([
+        $newUser = User::create([
         'name' => $data['name'],
         'surname' => $data['surname'],
         'email' => $data['email'],
         'belong' => $data['belong'],
         'sex_id' => $data['sex_id'],
         'password' => bcrypt($data['password']),
-        ]);
-        $user = whereEmail($data['email'])->first();
-        $boss = Boss::whereId($data['boss_ig'])->first();
-        $role = Role::whereId($data['role_ig'])->first();
+        ]);        
+        $user = Colleague::whereEmail($data['email'])->first();
+        $boss = Boss::whereId($data['boss_id'])->first();
+        $role = Role::whereId($data['role_id'])->first();
         $sex = Sex::whereId($data['sex_id'])->first();
         $user->boss()->sync([$boss->id]);
         $user->role()->sync([$role->id]);
         $user->sex()->associate($sex);
         $user->save();        
-        return view('success', ['title' => 'Регистрация успешна']);
+        return $newUser;
     }
 }

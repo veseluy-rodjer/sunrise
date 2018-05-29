@@ -23,11 +23,12 @@ class ColleagueController extends Controller
      */
     public function index()
     {
-/*        
-        Schema::table('invite_rank', function (Blueprint $table) {
-          $table->string('surname');
+/*      
+        Schema::table('users', function (Blueprint $table) {
+            $table->integer('sex_id')->nullable()->change();
+            $table->integer('belong')->nullable()->change();
         });        
-*/        
+*/
         $order=null;
         $listing = Colleague::listing($order);
         $data = ['title' => 'Главная', 'listing' => $listing];

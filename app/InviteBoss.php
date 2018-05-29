@@ -29,6 +29,7 @@ class InviteBoss extends Model
             $add->sex_id = $request->sex;
             $add->key = $key;
             $add->time = $time;
+            $add->belong = $request->user()->id;
             $add->save();
             return true;
         }
@@ -37,9 +38,11 @@ class InviteBoss extends Model
     public function scopeUp($quest, $email, $key)
     {
         $newTime = time();
-        if ($up = InviteBoss::whereEmail($email)->first()) {
+        if (InviteBoss::whereEmail($email)->count() > 0) {
+            $up = InviteBoss::whereEmail($email)->first();
             if ($up->key == $key && $newTime <= $up->time) {
-                return $up;
+               InviteBoss::whereEmail($email)->delete();
+               return $up;
             }
             else {
                 return false;
@@ -49,6 +52,4 @@ class InviteBoss extends Model
             return false;
         }
     }
-    
-        
 }

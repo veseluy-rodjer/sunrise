@@ -3,10 +3,9 @@
 
 <div class="container">
     <p style="text-align:left; font-weight:700"><a href="{{ route('role.create') }}" >Придумать роли (может только супербосс)</a></p>
-    <p style="text-align:left; font-weight:700"><a href="{{ route('boss.create') }}" >Придумать должность замов (может только супербосс)</a></p>
-    <p style="text-align:right; font-weight:700"><a href="{{ route('inviteBoss.create') }}" >Пригласить зама</a></p>
-    <p style="text-align:right; font-weight:700"><a href="{{ route('inviteRank.create') }}" >Пригласить сотрудника в свой отдел (может только зам.)</a></p>    
-    <p style="text-align:center; font-weight:700"><a href="{{ route('rank.create') }}" >Придумать должности для остальных (может только супербосс)</a></p>
+    <p style="text-align:left; font-weight:700"><a href="{{ route('boss.create') }}" >Придумать должности (может только супербосс)</a></p>
+    <p style="text-align:left; font-weight:700"><a href="{{ route('inviteBoss.create') }}" >Пригласить зама (может только супербосс)</a></p>
+    <p style="text-align:left; font-weight:700"><a href="{{ route('inviteRank.create') }}" >Пригласить сотрудника в свой отдел (может только зам.)</a></p>    
 
 <table>
     <tr><th>№</th><th>Имя</th><th>Фамилия</th><th>Email</th><th>Должность</th><th>Роль</th><th>Пол</th><th>Редактировать</th><th>Удалить</th></tr>

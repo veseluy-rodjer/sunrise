@@ -20,6 +20,7 @@ class CreateInviteBossTable extends Migration
             $table->string('surname');                        
             $table->string('email');
             $table->string('key');
+            $table->string('belong');
             $table->integer('role_id');
             $table->integer('boss_id');
             $table->integer('sex_id');
