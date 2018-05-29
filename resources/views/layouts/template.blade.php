@@ -33,9 +33,15 @@ aside {
 <body>
 <header style="background: grey; color: white">
 <h1 style="text-align: center">Сотрудники</h1>
-<p style="text-align: center; font-weight:700">Хорошая болезнь склероз - ничего не болит и каждый день новости</p>
-<h4><a style="color: white" href='/user/newsList/'>Админка</a></h4>
-<h4 style="text-align: right"><a style="color: white" href='/admin/newsExit/'>Выход</a></h4>
+<p style="text-align: center; font-weight:700">Если сотрудник на работе сидит 10 минут без дела, то он автоматически переходит в спящий режим.</p>
+@if (empty(Auth::user()))
+<h4 style="text-align: right;"><a style="color: white" href="{{ route('home') }}">Админка</a></h4>
+@else
+<form id="logout-form" action="{{ route('logout') }}" method="POST">
+{{ csrf_field() }}
+<p style="text-align: right;"><input type="submit" value="Выход"></p>
+</form>
+@endif
 </header>
 @yield('content')
 </body>

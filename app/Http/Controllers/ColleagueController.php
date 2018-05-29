@@ -29,13 +29,13 @@ class ColleagueController extends Controller
             $table->integer('belong')->nullable()->change();
         });        
 */
-        $order=null;
+        $order='id';
         $listing = Colleague::listing($order);
         $data = ['title' => 'Главная', 'listing' => $listing];
         return view('colleague', $data);
     }
 
-    public function indexOrder($order)
+    public function indexOrder($order = 'id')
     {
         $listing = Colleague::listing($order);
         $data = ['title' => 'Главная', 'listing' => $listing];

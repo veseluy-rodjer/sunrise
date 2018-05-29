@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use App\Boss;
 use App\Role;
 use App\Sex;
@@ -13,14 +14,17 @@ class Colleague extends Model
     
     public function scopeListing($quest, $order)
     {
-        if ($order == null) {
-            return Colleague::where('id', '!=', 1)->paginate(10);
-        }
-        else {
-            return Colleague::orderBy($order)
-            ->where('boss_id', '!=', -1)
-            ->get();
-        }        
+
+            if (!empty(Auth::user()) && Auth::user()->belong === 0) {
+                return Colleague::orderBy($order)
+                ->where('belong', '!=', 0)
+                ->paginate(10);
+            }
+            elseif (!empty(Auth::user())) {
+                return Colleague::orderBy($order)
+                ->whereBelong(Auth::user()->id)
+                ->paginate(10);
+            }
     }
 
     public function scopeEdit($quest, $id)
@@ -34,6 +38,8 @@ class Colleague extends Model
         $boss = Boss::whereBoss($request->boss)->first();
         $role = Role::whereRole($request->role)->first();
         $sex = Sex::whereSex($request->sex)->first();
+        $user->name = $request->name;
+        $user->surname = $request->surname;
         $user->boss()->sync([$boss->id]);
         $user->role()->sync([$role->id]);
         $user->sex()->associate($sex);
