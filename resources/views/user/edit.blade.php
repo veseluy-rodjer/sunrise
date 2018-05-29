@@ -24,6 +24,11 @@
     <option @php if ($user->boss()->first()->boss == $i->boss) echo 'selected'; @endphp value="{{ $i->boss }}">{{ $i->boss }}</option>
     @endforeach
 </select></p>
+<p>Роль: <select name="role" value="{{ $user->role()->first()->role }}" required>
+    @foreach ($role as $i)
+    <option @php if ($user->role()->first()->role == $i->role) echo 'selected'; @endphp value="{{ $i->role }}">{{ $i->role }}</option>
+    @endforeach
+</select></p>
 <p>Пол: <select size="2" name="sex" required>
     @foreach ($sex as $i)
     <option @php if ($user->sex->sex == $i->sex) echo 'selected'; @endphp value="{{ $i->sex }}">{{ $i->sex }}</option>

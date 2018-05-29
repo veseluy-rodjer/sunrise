@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Role;
 
 class RoleController extends Controller
 {
@@ -13,7 +14,9 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $listing = Role::listing();
+        $data = ['title' => 'Челядь', 'listing' => $listing];
+        return view('role', $data);
     }
 
     /**
@@ -23,7 +26,8 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        $data = ['title' => 'Челядь'];
+        return view('role/create', $data);
     }
 
     /**
@@ -34,7 +38,13 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $res = Role::store($request);
+        if ($res == false) {
+            return response('Такая должность уже существует, придумайте другую!');
+        }
+        else {
+            return redirect()->route('role.index');
+        }
     }
 
     /**
@@ -56,7 +66,9 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $edit = Role::edit($id);
+        $data = ['title' => 'Челядь', 'edit' => $edit];
+        return view('role/edit', $data);
     }
 
     /**
@@ -68,7 +80,13 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $res = Role::up($id, $request);
+        if ($res == false) {
+            return response('Такая должность уже существует, придумайте другую!');
+        }
+        else {
+            return redirect()->route('role.index');
+        }        
     }
 
     /**
@@ -79,6 +97,7 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Role::destr($id);
+        return back();
     }
 }

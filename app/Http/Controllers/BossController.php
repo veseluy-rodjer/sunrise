@@ -15,8 +15,8 @@ class BossController extends Controller
     public function index()
     {
         $listing = Boss::listing();
-        $date = ['title' => 'Замы', 'listing' => $listing];
-        return view('boss', $date);
+        $data = ['title' => 'Замы', 'listing' => $listing];
+        return view('boss', $data);
     }
 
     /**
@@ -26,8 +26,8 @@ class BossController extends Controller
      */
     public function create()
     {
-        $date = ['title' => 'Замы'];
-        return view('boss/create', $date);
+        $data = ['title' => 'Замы'];
+        return view('boss/create', $data);
     }
 
     /**
@@ -67,8 +67,8 @@ class BossController extends Controller
     public function edit($id)
     {
         $edit = Boss::edit($id);
-        $date = ['title' => 'Замы', 'edit' => $edit];
-        return view('boss/edit', $date);
+        $data = ['title' => 'Замы', 'edit' => $edit];
+        return view('boss/edit', $data);
     }
 
     /**

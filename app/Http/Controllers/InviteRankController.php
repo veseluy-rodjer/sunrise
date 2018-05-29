@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class InviteController extends Controller
+class InviteRankController extends Controller
 {
     /**
      * Display a listing of the resource.

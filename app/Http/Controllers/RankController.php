@@ -15,8 +15,8 @@ class RankController extends Controller
     public function index()
     {
         $listing = Rank::listing();
-        $date = ['title' => 'Челядь', 'listing' => $listing];
-        return view('rank', $date);
+        $data = ['title' => 'Челядь', 'listing' => $listing];
+        return view('rank', $data);
     }
 
     /**
@@ -26,8 +26,8 @@ class RankController extends Controller
      */
     public function create()
     {
-        $date = ['title' => 'Челядь'];
-        return view('rank/create', $date);
+        $data = ['title' => 'Челядь'];
+        return view('rank/create', $data);
     }
 
     /**
@@ -67,8 +67,8 @@ class RankController extends Controller
     public function edit($id)
     {
         $edit = Rank::edit($id);
-        $date = ['title' => 'Челядь', 'edit' => $edit];
-        return view('rank/edit', $date);
+        $data = ['title' => 'Челядь', 'edit' => $edit];
+        return view('rank/edit', $data);
     }
 
     /**

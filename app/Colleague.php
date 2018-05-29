@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Boss;
+use App\Role;
 use App\Sex;
 
 class Colleague extends Model
@@ -31,8 +32,10 @@ class Colleague extends Model
     {
         $user = Colleague::find($id);
         $boss = Boss::whereBoss($request->boss)->first();
+        $role = Role::whereRole($request->role)->first();
         $sex = Sex::whereSex($request->sex)->first();
         $user->boss()->sync([$boss->id]);
+        $user->role()->sync([$role->id]);
         $user->sex()->associate($sex);
         $user->save();        
     }    

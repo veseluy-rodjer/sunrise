@@ -24,7 +24,7 @@ class Rank extends Model
             $add->save();
             return true;
         }
-    }    
+    }
     
     public function scopeEdit($quest, $id)
     {
@@ -53,7 +53,7 @@ class Rank extends Model
         $destroy->delete();
     }    
     
-    public function colleagues()
+    public function colleague()
     {
         return $this->belongsToMany('App\Colleague');
     }    

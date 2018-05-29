@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Colleague;
 use App\Boss;
+use App\Rank;
+use App\Role;
 use App\Sex;
 /*
 use Illuminate\Support\Facades\Schema;
@@ -22,21 +24,21 @@ class ColleagueController extends Controller
     public function index()
     {
 /*        
-        Schema::table('boss_colleague', function (Blueprint $table) {
-          $table->integer('colleague_id')->unique()->change();
+        Schema::table('invite_rank', function (Blueprint $table) {
+          $table->string('surname');
         });        
 */        
         $order=null;
         $listing = Colleague::listing($order);
-        $date = ['title' => 'Главная', 'listing' => $listing];
-        return view('colleague', $date);
+        $data = ['title' => 'Главная', 'listing' => $listing];
+        return view('colleague', $data);
     }
 
     public function indexOrder($order)
     {
         $listing = Colleague::listing($order);
-        $date = ['title' => 'Главная', 'listing' => $listing];
-        return view('colleagues', $date);
+        $data = ['title' => 'Главная', 'listing' => $listing];
+        return view('colleagues', $data);
     }
 
     /**
@@ -81,9 +83,10 @@ class ColleagueController extends Controller
     {
         $user = Colleague::edit($id);
         $boss = Boss::listing();
+        $role = Role::listing();        
         $sex = Sex::listing();
-        $date = ['title' => 'Сотрудник', 'user' => $user, 'boss' => $boss, 'sex' => $sex];
-        return view('user/edit', $date);
+        $data = ['title' => 'Сотрудник', 'user' => $user, 'boss' => $boss, 'role' => $role, 'sex' => $sex];
+        return view('user/edit', $data);
     }
 
     /**

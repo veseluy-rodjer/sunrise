@@ -15,7 +15,7 @@
                             <label for="name" class="col-md-4 control-label">Имя</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                                <input id="name" type="text" class="form-control" name="name" value="{{ $user->name }}" required readonly>
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">
@@ -25,25 +25,11 @@
                             </div>
                         </div>
                         
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="surname" class="col-md-4 control-label">Фамилия</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="surname" value="{{ old('surname') }}" required autofocus>
-
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('surname') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>                        
-
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail Адресс</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required readonly>
+                                <input id="email" type="email" class="form-control" name="email" value="{{ $user->email }}" required readonly>
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -57,7 +43,7 @@
                             <label for="password" class="col-md-4 control-label">Пароль</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
+                                <input id="password" type="password" class="form-control" name="password" required autofocus>
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
@@ -74,6 +60,11 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
+                        <input type="hidden" name="surname" value="{{ $user->surname }}" required>
+                        <input type="hidden" name="belong" value="{{ $user->belong }}" required>
+                        <input type="hidden" name="boss_id" value="{{ $user->boss_id }}" required>
+                        <input type="hidden" name="role_id" value="{{ $user->role_id }}" required>
+                        <input type="hidden" name="sex_id" value="{{ $user->sex_id }}" required>
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
