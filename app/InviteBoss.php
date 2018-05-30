@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use App\Colleague;
 
 class InviteBoss extends Model
@@ -26,8 +27,14 @@ class InviteBoss extends Model
             $add->email = $request->email;
             $add->boss_id = $request->boss;
             $role = [];
-            foreach ($request->role as $x) {
+            if (Auth::user()->belong !== 0) {
+                $x = $request->role[0];
                 $role[] = $x;
+            }
+            else {
+                foreach ($request->role as $x) {
+                    $role[] = $x;
+                }
             }
             $add->role_id = serialize($role);
             $add->sex_id = $request->sex;

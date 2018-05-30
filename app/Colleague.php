@@ -40,8 +40,15 @@ class Colleague extends Model
         $user->surname = $request->surname;
         $user->boss()->sync([$request->boss]);
         $user->role()->detach();
-        foreach ($request->role as $x) {
+        if (Auth::user()->belong !== 0) {
+            $x = $request->role[0];
             $user->role()->attach($x);
+        }
+        else {
+            
+            foreach ($request->role as $x) {
+                $user->role()->attach($x);
+            }
         }
         $user->sex()->associate($sex);
         $user->save();        
