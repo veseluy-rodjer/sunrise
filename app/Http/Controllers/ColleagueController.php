@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreColleague;
 use App\Colleague;
 use App\Boss;
 use App\Rank;
@@ -11,6 +12,11 @@ use App\Sex;
 
 class ColleagueController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('checkId')->only('edit', 'destroy');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -86,7 +92,7 @@ class ColleagueController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreColleague $request, $id)
     {
         Colleague::up($id, $request);
         return redirect()->route('index');

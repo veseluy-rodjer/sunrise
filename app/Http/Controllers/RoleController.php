@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreRole;
 use App\Role;
 
 class RoleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('checkId')->only('edit', 'destroy');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -36,7 +42,7 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRole $request)
     {
         $res = Role::store($request);
         if ($res == false) {
@@ -78,7 +84,7 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreRole $request, $id)
     {
         $res = Role::up($id, $request);
         if ($res == false) {

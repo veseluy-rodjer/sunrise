@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreInviteBoss;
 use App\InviteBoss;
 use App\Boss;
 use App\Role;
@@ -10,6 +11,11 @@ use App\Sex;
 
 class InviteBossController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('checkId')->only('destroy');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -42,7 +48,7 @@ class InviteBossController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreInviteBoss $request)
     {
         $time = strtotime('+1 day');
         $chars = 'abdefhiknrstyz1234567890';
@@ -101,7 +107,7 @@ class InviteBossController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $email, $key)
+    public function update(StoreInviteBoss $request, $email, $key)
     {
         $user = InviteBoss::up($email, $key);
         if ($user == false) {

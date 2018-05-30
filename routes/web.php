@@ -17,13 +17,9 @@ Route::resource('/sex', 'SexController');
 
 Route::resource('/boss', 'BossController');
 
-Route::resource('/rank', 'RankController');
-
 Route::get('/inviteBoss/update/{email}/{key}', 'InviteBossController@update')->name('inviteBoss.update');
 
 Route::resource('/inviteBoss', 'InviteBossController');
-
-Route::resource('/inviteRank', 'InviteRankController');
 
 Auth::routes();
 

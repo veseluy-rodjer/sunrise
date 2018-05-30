@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreBoss;
 use App\Boss;
 
 class BossController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('checkId')->only('edit', 'destroy');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -36,7 +42,7 @@ class BossController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBoss $request)
     {
         $res = Boss::store($request);
         if ($res == false) {
@@ -78,7 +84,7 @@ class BossController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreBoss $request, $id)
     {
         $res = Boss::up($id, $request);
         if ($res == false) {
