@@ -18,12 +18,12 @@ class Colleague extends Model
             if (!empty(Auth::user()) && Auth::user()->belong === 0) {
                 return Colleague::orderBy($order)
                 ->where('belong', '!=', 0)
-                ->paginate(10);
+                ->paginate(5);
             }
             elseif (!empty(Auth::user())) {
                 return Colleague::orderBy($order)
                 ->whereBelong(Auth::user()->id)
-                ->paginate(10);
+                ->paginate(5);
             }
     }
 

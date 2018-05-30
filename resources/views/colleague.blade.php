@@ -6,6 +6,8 @@
     <p style="text-align:left; font-weight:700"><a href="{{ route('boss.create') }}" >Придумать должности (может только супербосс)</a></p>
     <p style="text-align:left; font-weight:700"><a href="{{ route('inviteBoss.create') }}" >Пригласить сотрудника (может супербосс или сотрудники с соответствующей ролью в свой отдел.)</a></p>
     <p style="text-align:left; font-weight:700"><a href="{{ route('inviteBoss.index') }}" >Посмотреть список отправленных, но не подтвержденных запросов на регистрацию (может супербосс)</a></p>
+    <p style="text-align:left; font-weight:700"><a href="{{ route('role.index') }}" >Посмотреть список всех ролей (может супербосс)</a></p>
+    <p style="text-align:left; font-weight:700"><a href="{{ route('boss.index') }}" >Посмотреть список всех должностей     (может супербосс)</a></p>
 <table>
     <tr>
     <th>№</th>

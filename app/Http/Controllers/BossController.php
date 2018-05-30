@@ -22,7 +22,7 @@ class BossController extends Controller
     {
         $this->authorize('before', Boss::class);
         $listing = Boss::listing();
-        $data = ['title' => 'Замы', 'listing' => $listing];
+        $data = ['title' => 'Должности', 'listing' => $listing];
         return view('boss', $data);
     }
 
@@ -34,7 +34,7 @@ class BossController extends Controller
     public function create()
     {
         $this->authorize('before', Boss::class);
-        $data = ['title' => 'Замы'];
+        $data = ['title' => 'Должности'];
         return view('boss/create', $data);
     }
 
@@ -77,7 +77,7 @@ class BossController extends Controller
     {
         $this->authorize('before', Boss::class);
         $edit = Boss::edit($id);
-        $data = ['title' => 'Замы', 'edit' => $edit];
+        $data = ['title' => 'Должности', 'edit' => $edit];
         return view('boss/edit', $data);
     }
 

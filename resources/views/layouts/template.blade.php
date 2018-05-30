@@ -34,8 +34,9 @@ aside {
 <header style="background: grey; color: white">
 <h1 style="text-align: center">Сотрудники</h1>
 <p style="text-align: center; font-weight:700">Если сотрудник на работе сидит 10 минут без дела, то он автоматически переходит в спящий режим.</p>
+<h4 style="text-align: left;"><a style="color: white" href="{{ route('index') }}">На главную</a></h4>
 @if (empty(Auth::user()))
-<h4 style="text-align: right;"><a style="color: white" href="{{ route('home') }}">Админка</a></h4>
+<h4 style="text-align: right;"><a style="color: white" href="{{ route('login') }}">Залогиниться</a></h4>
 @else
 <form id="logout-form" action="{{ route('logout') }}" method="POST">
 {{ csrf_field() }}

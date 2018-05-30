@@ -22,7 +22,7 @@ class RoleController extends Controller
     {
         $this->authorize('before', Role::class);
         $listing = Role::listing();
-        $data = ['title' => 'Челядь', 'listing' => $listing];
+        $data = ['title' => 'Роли', 'listing' => $listing];
         return view('role', $data);
     }
 
@@ -34,7 +34,7 @@ class RoleController extends Controller
     public function create()
     {
         $this->authorize('before', Role::class);
-        $data = ['title' => 'Челядь'];
+        $data = ['title' => 'Роли'];
         return view('role/create', $data);
     }
 
@@ -77,7 +77,7 @@ class RoleController extends Controller
     {
         $this->authorize('before', Role::class);
         $edit = Role::edit($id);
-        $data = ['title' => 'Челядь', 'edit' => $edit];
+        $data = ['title' => 'Роли', 'edit' => $edit];
         return view('role/edit', $data);
     }
 
