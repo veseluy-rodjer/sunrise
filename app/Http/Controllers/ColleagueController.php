@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreColleague;
 use App\Colleague;
 use App\Boss;
-use App\Rank;
 use App\Role;
 use App\Sex;
 
@@ -30,11 +29,11 @@ class ColleagueController extends Controller
         return view('colleague', $data);
     }
 
-    public function indexOrder($order = 'id')
+    public function indexOrder($order)
     {
         $listing = Colleague::listing($order);
         $data = ['title' => 'Главная', 'listing' => $listing];
-        return view('colleagues', $data);
+        return view('colleague', $data);
     }
 
     /**
@@ -77,6 +76,7 @@ class ColleagueController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('update', Colleague::class);        
         $user = Colleague::edit($id);
         $boss = Boss::listing();
         $role = Role::listing();        
@@ -94,6 +94,7 @@ class ColleagueController extends Controller
      */
     public function update(StoreColleague $request, $id)
     {
+        $this->authorize('update', Colleague::class);
         Colleague::up($id, $request);
         return redirect()->route('index');
     }
@@ -106,6 +107,8 @@ class ColleagueController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->authorize('delete', Colleague::class);
+        Colleague::destr($id);
+        return back();        
     }
 }

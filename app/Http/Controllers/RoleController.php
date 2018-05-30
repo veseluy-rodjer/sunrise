@@ -20,6 +20,7 @@ class RoleController extends Controller
      */
     public function index()
     {
+        $this->authorize('before', Role::class);
         $listing = Role::listing();
         $data = ['title' => 'Челядь', 'listing' => $listing];
         return view('role', $data);
@@ -32,6 +33,7 @@ class RoleController extends Controller
      */
     public function create()
     {
+        $this->authorize('before', Role::class);
         $data = ['title' => 'Челядь'];
         return view('role/create', $data);
     }
@@ -44,9 +46,10 @@ class RoleController extends Controller
      */
     public function store(StoreRole $request)
     {
+        $this->authorize('before', Role::class);
         $res = Role::store($request);
         if ($res == false) {
-            return response('Такая должность уже существует, придумайте другую!');
+            return response('Такая роль уже существует, придумайте другую!');
         }
         else {
             return redirect()->route('role.index');
@@ -72,6 +75,7 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('before', Role::class);
         $edit = Role::edit($id);
         $data = ['title' => 'Челядь', 'edit' => $edit];
         return view('role/edit', $data);
@@ -86,6 +90,7 @@ class RoleController extends Controller
      */
     public function update(StoreRole $request, $id)
     {
+        $this->authorize('before', Role::class);
         $res = Role::up($id, $request);
         if ($res == false) {
             return response('Такая должность уже существует, придумайте другую!');
@@ -103,6 +108,7 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('before', Role::class);
         Role::destr($id);
         return back();
     }

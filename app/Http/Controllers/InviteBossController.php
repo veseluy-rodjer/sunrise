@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreInviteBoss;
 use App\InviteBoss;
+use App\Colleague;
 use App\Boss;
 use App\Role;
 use App\Sex;
@@ -23,6 +24,7 @@ class InviteBossController extends Controller
      */
     public function index()
     {
+        $this->authorize('before', Colleague::class);
         $listing = InviteBoss::listing();
         $data = ['title' => 'Главная', 'listing' => $listing];
         return view('inviteBoss', $data);
@@ -35,6 +37,7 @@ class InviteBossController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Colleague::class);
         $boss = Boss::listing();
         $role = Role::listing();        
         $sex = Sex::listing();
@@ -50,6 +53,7 @@ class InviteBossController extends Controller
      */
     public function store(StoreInviteBoss $request)
     {
+        $this->authorize('create', Colleague::class);
         $time = strtotime('+1 day');
         $chars = 'abdefhiknrstyz1234567890';
         $numChars = strlen($chars);
@@ -127,6 +131,8 @@ class InviteBossController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->authorize('delete', Colleague::class);
+        InviteBoss::destr($id);
+        return back();
     }
 }

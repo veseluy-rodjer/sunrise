@@ -20,6 +20,7 @@ class BossController extends Controller
      */
     public function index()
     {
+        $this->authorize('before', Boss::class);
         $listing = Boss::listing();
         $data = ['title' => 'Замы', 'listing' => $listing];
         return view('boss', $data);
@@ -32,6 +33,7 @@ class BossController extends Controller
      */
     public function create()
     {
+        $this->authorize('before', Boss::class);
         $data = ['title' => 'Замы'];
         return view('boss/create', $data);
     }
@@ -44,6 +46,7 @@ class BossController extends Controller
      */
     public function store(StoreBoss $request)
     {
+        $this->authorize('before', Boss::class);
         $res = Boss::store($request);
         if ($res == false) {
             return response('Такая должность уже существует, придумайте другую!');
@@ -72,6 +75,7 @@ class BossController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('before', Boss::class);
         $edit = Boss::edit($id);
         $data = ['title' => 'Замы', 'edit' => $edit];
         return view('boss/edit', $data);
@@ -86,6 +90,7 @@ class BossController extends Controller
      */
     public function update(StoreBoss $request, $id)
     {
+        $this->authorize('before', Boss::class);
         $res = Boss::up($id, $request);
         if ($res == false) {
             return response('Такая должность уже существует, придумайте другую!');
@@ -103,6 +108,7 @@ class BossController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('before', Boss::class);
         Boss::destr($id);
         return back();
     }

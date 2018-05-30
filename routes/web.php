@@ -23,7 +23,7 @@ Route::resource('/inviteBoss', 'InviteBossController');
 
 Auth::routes();
 
-Route::match(['get', 'head'], 'register', function(){
+Route::get('register', function(){
     return response('Только через почту!');
 })->name('register');    
 

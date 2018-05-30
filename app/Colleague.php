@@ -47,6 +47,18 @@ class Colleague extends Model
         $user->save();        
     }    
     
+    public function scopeDestr($quest, $id)
+    {
+        $destroy = Colleague::find($id);
+        if ($destroy->role()->count() > 0) {
+            $destroy->role()->detach();
+        }
+        if ($destroy->boss()->count() > 0) {
+            $destroy->boss()->detach();
+        }        
+        $destroy->delete();
+    }    
+    
     public function sex()
     {
         return $this->belongsTo('App\Sex');

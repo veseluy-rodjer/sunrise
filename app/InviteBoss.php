@@ -56,4 +56,9 @@ class InviteBoss extends Model
             return false;
         }
     }
+    
+    public function scopeDestr($quest, $id)
+    {
+        InviteBoss::destroy($id);
+    }    
 }
