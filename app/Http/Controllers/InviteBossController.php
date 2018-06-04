@@ -69,8 +69,8 @@ class InviteBossController extends Controller
         else {
             $date = date('Y\-m\-d\ H\:i\:s', $time);
             $data = ['title' => 'Отчет'];
-            $message = $request->name . ", для подтверждения регистрации до ' . $date . 'перейдите по ссылке:\r
-            <a href=\"http://localhost/inviteBoss/update/' . $request->email . '/' . $key'\">Ссылка</a>";
+            $message = $request->name . ", для подтверждения регистрации до " . $date . " перейдите по ссылке:\r
+            http://localhost/inviteBoss/update/" . $request->email . "/" . $key;
             $message = wordwrap($message, 70, "\r\n");
             $headers = 'From: sunrise@sunrise.kl.com.ua' . "\r\n";
             if (mail($request->email, 'Приглашение в корпоративную сеть', $message, $headers)) {
